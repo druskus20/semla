@@ -22,7 +22,8 @@ wisp = ">=2.0.0"
 mist = ">=5.0.0"
 gleam_http = ">=4.0.0"
 gleam_erlang = ">=1.0.0"
-supa = { path = "../supa" }
+#supa = { path = "../supa" }
+supa = { git = "https://github.com/druskus20/supa.git", ref = "main" }
 rsvp = ">= 1.1.3 and < 2.0.0"
 optimist = ">= 1.0.0 and < 2.0.0"
 simplifile = ">= 1.0.0 and < 3.0.0"
