@@ -1,0 +1,8 @@
+build
+
+#Added automatically by Lustre Dev Tools
+/.lustre
+/dist
+*.dump
+*.env
+.bageri

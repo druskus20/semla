@@ -1,0 +1,33 @@
+{
+  title: "App",
+  favicon: null,
+
+  meta: {
+    description: "A",
+    author: "Name",
+    viewport: "width=device-width, initial-scale=1.0"
+  },
+
+  pages: {
+    index: {
+      script: "semla.js",
+      title: "Semla App - Home"
+    },
+    login: {
+      script: "semla.js",
+      title: "Semla App - Login"
+    }
+  },
+
+  env_files: {
+    dev: ".env",
+    prd: ".env.prd"
+  },
+
+  pre_hook: [
+    "gleam run -m lustre/dev build --outdir=.lustre --no-html",
+    "cp .lustre/semla.js .bageri/"
+  ],
+
+  output_dir: ".bageri"
+}
