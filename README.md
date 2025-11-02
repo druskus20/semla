@@ -44,7 +44,7 @@ database, specifically, supabase).
 
 Building can be done with:
 
-```
+```bash
 gleam build --target "javascript"
 ```
 
@@ -52,6 +52,11 @@ In an effort to avoid having to interact with npm and the javascript ecosystem,
 as much as possible, bundling for production is done with the help of a custom
 build tool: [bageri](https://github.com/druskus20/bageri). This tool is designed
 for personal use.
+
+```bash
+bageri -vvv dev
+bageri build
+```
 
 ## On supabase
 
