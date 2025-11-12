@@ -16,7 +16,7 @@
   },
   env_files: {
     dev: ".env.dev",
-    prd: ".env.prd",
+    prd: ".env",
   },
   pre_hook: [
     "gleam run -m lustre/dev build --outdir=.lustre --no-html",
