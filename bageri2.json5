@@ -6,11 +6,11 @@
   scripts: [
     "semla.js"
   ],
-  "spa_pages": {
-    "index": {
-      "title": "Bageri",
+  spa_pages: {
+    index: {
+      "title": "Semla"
     },
-    "login": {
+    login: {
       "title": "Semla - Login"
     }
   },
