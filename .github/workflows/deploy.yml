@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - master
   workflow_dispatch:
   repository_dispatch:
     types: [deploy_with_data]
