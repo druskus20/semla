@@ -25,7 +25,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download bageri
+      - name: Setup Gleam
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: "28"
+          gleam-version: "1.13.0"
+          rebar3-version: "3"
+
+      - name: Download Gleam dependencies
+        run: gleam deps download
+
+      - name: Setup bageri
         run: |
           curl -L -o bageri https://github.com/druskus20/bageri/releases/download/v0.2.0/bageri
           chmod +x bageri
