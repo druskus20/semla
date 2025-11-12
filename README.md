@@ -61,7 +61,7 @@ bageri build
 ## On supabase
 
 The frontend connects directly to supabase, supabase handles permissions and
-authentication. It is okay to expose `SUPABASE_KEY`, since it is a public anon
+authentication. It is okay to expose `SUPABASE_ANON_KEY`, since it is a public anon
 key.
 
 [https://supabase.com/docs/guides/api/api-keys](https://supabase.com/docs/guides/api/api-keys)

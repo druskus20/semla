@@ -30,6 +30,8 @@ pub fn read_from_env() -> Result(Config, String) {
 
 pub fn db_config() -> Result(#(String, String), String) {
   use url <- try(from_env("SUPABASE_URL") |> ok_or("SUPABASE_URL not set"))
-  use key <- try(from_env("SUPABASE_KEY") |> ok_or("SUPABASE_KEY not set"))
+  use key <- try(
+    from_env("SUPABASE_ANON_KEY") |> ok_or("SUPABASE_ANON_KEY not set"),
+  )
   Ok(#(url, key))
 }

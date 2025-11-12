@@ -1,0 +1,11 @@
+title = "Gitleaks Configuration File for Semla"
+
+[extend]
+useDefault = true
+
+[allowlist]
+regexTarget = "match"
+description = "Whitelist SUPABASE_ANON_KEY because it is public"
+regexes = [
+  '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt1d3Zkc3prY3RwcXZoZnhoeWZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1NDQ5MzUsImV4cCI6MjA3NzEyMDkzNX0.AY0RtgCuxQfsJ8MonGqqrHLKTOM9WZioh8qCSaI0Ffk''',
+]
