@@ -26,15 +26,28 @@ main {
 
 }
 
+/* do not wrap text */
 .user-banner {
   display: flex;
   width: 100%;
   align-items: center;
   margin-bottom: 2rem;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   .signed-as {
+    span {
+      white-space: nowrap;
+      padding: 0.25rem 0;
+    }
+
     display: flex;
+    flex-wrap: wrap;
+  }
+
+  button {
+    padding: 0.25rem 0;
+
   }
 }
 
@@ -45,6 +58,9 @@ button {
   border: 1px solid var(--border-color);
   color: var(--text-primary);
 
+  &:hover {
+    background-color: color-mix(in srgb, var(--bg-secondary) 30%, var(--bg-primary) 70%);
+  }
 }
 
 .todo-list {
