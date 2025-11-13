@@ -37,7 +37,7 @@ jobs:
 
       - name: Setup bageri
         run: |
-          curl -L -o bageri https://github.com/druskus20/bageri/releases/download/v0.4.0/bageri
+          curl -L -o bageri https://github.com/druskus20/bageri/releases/download/v0.5.0/bageri
           chmod +x bageri
 
       - name: Build with bageri
