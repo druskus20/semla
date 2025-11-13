@@ -13,7 +13,7 @@ import rsvp
 import supa/auth as supa_auth
 
 type Model {
-  Model(db_state: DbState)
+  Model(db_state: DbState, config: Config)
 }
 
 type Msg {
@@ -41,12 +41,12 @@ fn init(config: Config) -> #(Model, Effect(Msg)) {
     True -> {
       let redirect_effect =
         effect.from(fn(_) { redirect_to_url("/index.html") })
-      let model = Model(db_state)
+      let model = Model(db_state, config)
       #(model, redirect_effect)
     }
     False -> {
       let check_session_effect = db.get_session_from_url(SessionFromUrl)
-      let model = Model(db_state)
+      let model = Model(db_state, config)
       #(model, check_session_effect)
     }
   }
@@ -59,7 +59,7 @@ fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
       #(model, check_session_effect)
     }
     SessionFromUrl(result) -> {
-      let Model(db_state) = model
+      let Model(db_state, config) = model
       let new_db_state = db.handle_session_result(db_state, result)
 
       let redirect_effect = case new_db_state.auth_status {
@@ -71,25 +71,28 @@ fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
         }
       }
 
-      #(Model(new_db_state), redirect_effect)
+      #(Model(new_db_state, config), redirect_effect)
     }
     SignInWithGitHub -> {
-      let Model(db_state) = model
-      let redirect_url = "http://localhost:3000/"
+      let Model(db_state, config) = model
+      let auth_redirect_url = case config {
+        config.Db(_, auth_redirect_url:) -> auth_redirect_url
+        config.Local(auth_redirect_url:) -> auth_redirect_url
+      }
       let effect =
-        db.sign_in_with_github(db_state, redirect_url, GitHubAuthResponse)
+        db.sign_in_with_github(db_state, auth_redirect_url, GitHubAuthResponse)
       #(model, effect)
     }
     GitHubAuthResponse(result) -> {
-      let Model(db_state) = model
+      let Model(db_state, config) = model
       let new_db_state = db.handle_github_auth_result(db_state, result)
-      #(Model(new_db_state), effect.none())
+      #(Model(new_db_state, config), effect.none())
     }
   }
 }
 
 fn view(model: Model) -> Element(Msg) {
-  let Model(db_state) = model
+  let Model(db_state, _) = model
 
   case db_state.auth_status {
     db.Authenticated(db.RemoteAuth(_, user)) -> {

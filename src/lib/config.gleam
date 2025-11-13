@@ -2,8 +2,8 @@ import gleam/result.{try}
 import lib/utils.{from_env, ok_or, parse_bool}
 
 pub type Config {
-  Local
-  Db(ConfigWithDb)
+  Local(auth_redirect_url: String)
+  Db(ConfigWithDb, auth_redirect_url: String)
 }
 
 pub type ConfigWithDb {
@@ -17,13 +17,18 @@ pub fn read_from_env() -> Result(Config, String) {
     |> try(parse_bool),
   )
 
+  use auth_redirect_url <- try(
+    from_env("AUTH_REDIRECT_URL")
+    |> ok_or("AUTH_REDIRECT_URL not set"),
+  )
+
   case local_db {
     True -> {
-      Ok(Local)
+      Ok(Local(auth_redirect_url))
     }
     False -> {
       use #(supa_url, supa_key) <- try(db_config())
-      Ok(Db(ConfigWithDb(supa_url, supa_key)))
+      Ok(Db(ConfigWithDb(supa_url, supa_key), auth_redirect_url))
     }
   }
 }

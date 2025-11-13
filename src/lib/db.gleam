@@ -29,12 +29,12 @@ pub type DbState {
 
 pub fn init_connection(config: Config) -> Result(DbState, String) {
   case config {
-    config.Local -> {
+    config.Local(_) -> {
       let state =
         DbState(LocalConnection, Authenticated(LocalAuth("local_user")))
       Ok(state)
     }
-    config.Db(db_config) -> {
+    config.Db(db_config, _) -> {
       let client = client.create(db_config.supa_url, db_config.supa_key)
       let state = DbState(RemoteConnection(client), Loading)
       Ok(state)

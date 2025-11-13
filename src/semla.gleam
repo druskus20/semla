@@ -17,10 +17,10 @@ pub fn run() -> Result(Nil, String) {
   use config <- try(read_from_env())
 
   case config {
-    Local -> {
+    Local(_) -> {
       dbg(config)
     }
-    Db(_) -> {
+    Db(_, _) -> {
       dbg(config)
     }
   }
