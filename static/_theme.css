@@ -1,0 +1,112 @@
+/* Local Inter font */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/inter-300.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/inter-400.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* CSS Variables for Theme Support */
+:root {
+  /* Light theme (original background, Gruvbox text) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #3c3836;
+  --text-secondary: #504945;
+  --text-muted: #665c54;
+  --text-error: #cc241d;
+  --border-color: #bdae93;
+  --border-hover: #a89984;
+
+  /* Source badges */
+  --badge-local-bg: #b8bb26;
+  --badge-local-text: #282828;
+  --badge-github-bg: #458588;
+  --badge-github-text: #fbf1c7;
+  --badge-mock-bg: #d79921;
+  --badge-mock-text: #282828;
+
+  /* Activity colors (Gruvbox) */
+  --activity-ride: #fe8019;
+  /* bright orange */
+  --activity-run: #b8bb26;
+  /* bright green */
+  --activity-weight: #d3869b;
+  /* bright purple */
+  --activity-multiple: #928374;
+  /* gray */
+  --activity-none: #ebedf0;
+  /* original light gray for empty days */
+
+  /* Activity colors for tooltips (more intense in light mode) */
+  --activity-ride-tooltip: #d65d0e;
+  /* darker orange for better contrast */
+  --activity-run-tooltip: #98971a;
+  /* darker green for better contrast */
+  --activity-weight-tooltip: #b16286;
+  /* darker purple for better contrast */
+
+  /* Build info */
+  --build-info-color: #928374;
+}
+
+/* Dark theme (Gruvbox Dark) */
+[data-theme="dark"] {
+  --bg-primary: #282828;
+  /* dark0 */
+  --bg-secondary: #3c3836;
+  /* dark1 */
+  --text-primary: #ebdbb2;
+  /* light1 */
+  --text-secondary: #d5c4a1;
+  /* light2 */
+  --text-muted: #bdae93;
+  /* light3 */
+  --text-error: #fb4934;
+  /* bright red */
+  --border-color: #504945;
+  /* dark2 */
+  --border-hover: #665c54;
+  /* dark3 */
+
+  /* Source badges - adjusted for dark mode */
+  --badge-local-bg: #98971a;
+  --badge-local-text: #282828;
+  --badge-github-bg: #076678;
+  --badge-github-text: #ebdbb2;
+  --badge-mock-bg: #b57614;
+  --badge-mock-text: #282828;
+
+  /* Activity colors (darker for dark theme) */
+  --activity-ride: #d65d0e;
+  /* darker orange */
+  --activity-run: #98971a;
+  /* darker green */
+  --activity-weight: #b16286;
+  /* darker purple */
+  --activity-multiple: #928374;
+  /* gray */
+  --activity-none: #504945;
+  /* darker gray for empty days in dark mode */
+
+  /* Activity colors for tooltips (same as regular in dark mode) */
+  --activity-ride-tooltip: #fe8019;
+  /* bright orange for good visibility */
+  --activity-run-tooltip: #b8bb26;
+  /* bright green for good visibility */
+  --activity-weight-tooltip: #d3869b;
+  /* bright purple for good visibility */
+
+  /* Build info */
+  --build-info-color: #7c6f64;
+  /* dark4 */
+}

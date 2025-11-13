@@ -1,13 +1,17 @@
 {
-  "title": "Semla App",
-  "favicon": "favicon.svg",
+  title: "Semla",
+  favicon: "favicon.svg",
   author: "druskus",
   "description": "Todo app written in Gleam",
-  "scripts": [
-    "semla.js",
+  scripts: [
+    "semla.js"
   ],
-  "styles": [
+  styles: [
     "styles.css"
+  ],
+  watch_patterns: [
+    "src/**",
+    "static/**",
   ],
   "spa_pages": {
     "index": {
@@ -17,19 +21,14 @@
       "title": "Semla - Login"
     }
   },
-  "html_pages": {},
-  "watch_patterns": [
-    "src/",
-    "static/",
-  ],
   env_files: {
     dev: ".env.dev",
     prd: ".env",
   },
   pre_hook: [
     "gleam run -m lustre/dev build --outdir=.lustre --no-html",
-    "cp -r .lustre/semla.js .bageri/",
-    "cp -r static/* .bageri/",
+    "cp .lustre/semla.js .bageri/",
+    "cp static/styles.css .bageri/",
   ],
   output_dir: ".bageri"
 }

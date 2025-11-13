@@ -1,0 +1,103 @@
+@import "./_normalize.css";
+@import "_theme.css";
+
+/* Minimal reset for functionality */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 1rem;
+}
+
+/* Global styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+main {
+  max-width: 60rem;
+  padding: 3rem 2rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+}
+
+.user-banner {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+
+  .signed-as {
+    display: flex;
+  }
+}
+
+/* Minimal programmer button */
+button {
+  cursor: pointer;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+
+}
+
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.add-todo {
+  display: flex;
+  margin-bottom: 1rem;
+
+  input[type="text"] {
+    width: 100%;
+    margin-right: 0.2rem;
+    padding: 0.2rem;
+    border: 1px solid var(--border-color);
+  }
+
+  button {
+    flex-shrink: 0;
+  }
+}
+
+.todo-item {
+  &.in-progress .todo-name {
+    color: var(--text-primary);
+    font-weight: bold;
+  }
+
+  &.pending .todo-name {
+    color: var(--text-secondary);
+  }
+
+  &.completed {
+
+    .status-toggle,
+    .delete-btn {
+      opacity: 0.5;
+    }
+
+    .todo-name {
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+  }
+}
+
+.todo-item {
+  display: flex;
+  flex-direction: row;
+
+  .todo-name {
+    flex-grow: 1;
+  }
+}

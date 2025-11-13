@@ -7,9 +7,10 @@ import lib/db.{type DbState}
 import lib/todos.{type Todo, Todo}
 import lib/utils.{expect, redirect_to_url}
 import lustre
+import lustre/attribute.{class, placeholder, type_, value}
 import lustre/effect.{type Effect}
 import lustre/element.{type Element}
-import lustre/element/html.{button, div, p}
+import lustre/element/html.{button, div, main, p, span}
 import lustre/event.{on_click}
 import optimist
 import rsvp
@@ -282,6 +283,9 @@ fn view(model: Model) -> Element(Msg) {
     }
     False -> {
       case db_state.auth_status {
+        db.Authenticated(db.LocalAuth(_)) -> {
+          "LocalAuth should not occur in non-local mode" |> panic
+        }
         db.Loading -> {
           div([], [p([], [element.text("Loading...")])])
         }
@@ -292,20 +296,20 @@ fn view(model: Model) -> Element(Msg) {
           div([], [p([], [element.text("Redirecting to login...")])])
         }
         db.Authenticated(db.RemoteAuth(_, user)) -> {
-          div([], [
-            div([], [element.text("Welcome, " <> user.email <> "!")]),
-            div([], [
-              button([on_click(SignOut)], [
-                element.text("Sign out"),
+          main([], [
+            div([class("user-banner")], [
+              div([class("signed-as")], [
+                // &nbsp;
+                span([], [element.text("Signed in as: \u{a0}")]),
+                span([class("email")], [element.text(user.email)]),
+              ]),
+              div([], [
+                button([on_click(SignOut)], [
+                  element.text("Sign out"),
+                ]),
               ]),
             ]),
 
-            todo_list.view(todos, new_todo_name) |> element.map(map_todo_msg),
-          ])
-        }
-        db.Authenticated(db.LocalAuth(_)) -> {
-          div([], [
-            div([], [element.text("Welcome, local user!")]),
             todo_list.view(todos, new_todo_name) |> element.map(map_todo_msg),
           ])
         }
