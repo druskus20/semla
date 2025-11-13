@@ -29,7 +29,7 @@ pub fn run() -> Result(Nil, String) {
     "/login.html" | "/login" -> {
       login.start_lustre_app(config)
     }
-    "/index.html" | "/index" -> {
+    "/index.html" | "/index" | "/" -> {
       index.start_lustre_app(config)
     }
     _ -> {
