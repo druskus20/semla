@@ -54,9 +54,6 @@ jobs:
         with:
           path: .bageri
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-
   deploy:
     environment:
       name: github-pages
