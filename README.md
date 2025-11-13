@@ -68,3 +68,17 @@ key.
 
 The database schema includes row level security policies to ensure users can
 only access their own data.
+
+## Authentication redirect with github
+
+1. User clicks login button
+2. User is redirected to github to authenticate
+3. Github redirects to supabase's callback url (configured redirect url in github oauth app
+   settings)
+4. Supabase redirects to "redirect_url" specified when calling the sign up
+   method.
+  - This might fail if the specified redirect url is not in the list of allowed
+    redirect urls configured in supabase settings. (Authentication → URL
+  Configuration). Make sure to include the protocol (http:// or https://)
+5. App receives the authentication token in the url fragment and extracts it
+   (via `supa` library utility method)

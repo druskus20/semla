@@ -139,12 +139,7 @@ fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
                 optimist.push(todos, [optimistic_todo, ..current_todos])
 
               let create_effect =
-                todos.create_todo(
-                  db_state,
-                  name,
-                  option.None,
-                  todos.Pending,
-                )
+                todos.create_todo(db_state, name, option.None, todos.Pending)
                 |> effect.map(TodoCreated)
 
               #(Model(db_state, updated_todos, ""), create_effect)
